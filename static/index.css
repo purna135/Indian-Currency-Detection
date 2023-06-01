@@ -1,0 +1,164 @@
+html {
+  text-align: center;
+}
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins&family=Roboto&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: 'Roboto', sans-serif;
+  color: white;
+}
+
+.app-header {
+  min-height: 0vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 1vmin);
+  color: white;
+}
+
+
+
+.title-wrap{
+  font-weight: 800;
+  margin: 10px 0 5px 0;
+  font-size: 50px;
+  color: black;
+}
+
+p{
+  font-size: 30px;
+  margin: 20px;
+}
+
+.img1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 350px;
+    border: 2px solid rgb(46, 46, 46); 
+}
+
+input[type=file]{
+  background-color: #0b97d8;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 10px 10px;
+  border-radius: 10px;
+}
+
+
+
+#sendbutton{
+  height: 40px;
+  width: 150px;
+  background-color: rgb(223, 147, 8);
+  border: 0px;
+  border-radius: 13px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  margin: 10px 10px;
+}
+#sendbutton:hover{
+  background-color: rgb(6, 240, 209);
+  color: black;
+}
+
+/*Progress Bar*/
+
+.loading{
+    text-align: center;
+    display:none;
+    margin-bottom: 10px;
+}
+.percent{
+    color: #999;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 15px;
+}
+.text{
+    position: relative;
+    top: 20px;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 21px;  
+    display: none;
+}
+.text-blink{
+    animation: blink 1s ease-in-out .1s;
+}
+@keyframes blink{
+    0%{
+        opacity: 1;
+    }
+    25%{
+        opacity: 0.25;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    75%{
+        opacity: 0.75;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.progress-bar{
+    width: 365px;
+    /*360 is the progess length*/
+    height: 21px;
+    background-color: #111;
+    border-radius: 13px;
+    padding: 3px;
+    box-sizing: border-box;
+    margin: auto 10px;
+}
+.progress{
+    width: 200px;
+    height: 18px;
+    background-color: #66f308;
+    border-radius: 13px;
+}
+
+/*Send Button*/
+
+.voiceoutputbtn-1,.voiceoutputbtn-2{
+  display: none;
+  padding: 10px 20px;
+  background-color: rgb(8, 116, 240);
+  color: rgb(253, 250, 250);
+  cursor: pointer;
+  border-radius: 13px;
+  border: 0px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 5px 0px;
+  /* visibility: hidden; */
+}
+
+/*Responsiveness*/
+
+@media screen and (max-width:700px){
+  .title-wrap{
+    font-size: 25px !important;
+  }
+}
+@media screen and (max-width:1050px){
+  .title-wrap{
+    font-size: 35px;
+  }
+}
+
