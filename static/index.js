@@ -1,22 +1,20 @@
 let englishtext = "";
 let hinditext = "";
 
-// No need of progress bar for time delay in app version-2 but kept it due to nice animation.
-
 window.onload = () => {
 	$('#sendbutton').click(() => {
 		englishtext = "";
 		hinditext = "";
 		hideInterface();
 
-		imagebox = $('#imagebox')
+		imagebox = $('#imagebox1')
 		input = $('#imageinput')[0]
 		if(input.files && input.files[0])
 		{
 			let formData = new FormData();
 			formData.append('image' , input.files[0]);
 			$.ajax({
-				url: "http://192.168.26.195:8080/detectObject", 
+				url: "http://192.168.0.179:8080/detectObject", 
 				// fix below to your liking
 				// url: "http://xxx.xxx.xxx.xxx:8080/detectObject", 
 				type:"POST",
@@ -36,7 +34,8 @@ window.onload = () => {
 					image = bytestring.split('\'')[1];
 					englishtext = data['englishmessage'];
 					hinditext = data['hindimessage'];
-					imagebox.attr('src' , 'data:image/jpeg;base64,'+image);
+					imagebox2 = $('#imagebox2')
+					imagebox2.attr('src' , 'data:image/jpeg;base64,'+image);
 					
 					// $('#audio').html('<audio autoplay><source src="static/detected_image.mp3"></audio>');
 					updateInterface();					
@@ -69,13 +68,12 @@ window.onload = () => {
 
 
 function readUrl(input){
-	imagebox = $('#imagebox');
+	imagebox = $('#imagebox1');
 	console.log("evoked readUrl");
 	if(input.files && input.files[0]){
 		let reader = new FileReader();
 		reader.onload = function(e){
 			// console.log(e)
-			
 			imagebox.attr('src',e.target.result); 
 		}
 		reader.readAsDataURL(input.files[0]);
@@ -84,63 +82,17 @@ function readUrl(input){
 
 
 function hideInterface(){
-	$(".loading").hide();
-	let progresstext = document.querySelector('.text');
-	progresstext.style.display = "none";//hide completed text
-	hideButtons();
-	function hideButtons(){
-		$("#voice-english-output").hide();
-		$("#voice-hindi-output").hide();
-	}
+	$("#voice-english-output").hide();
+	$("#voice-hindi-output").hide();
 }
 
 function updateInterface(){
-	$(".loading").show();
-	progress();
-
-	// show voice output after 18s approx
-	setTimeout(
-		function () {
-			showTarget();
-		}, 10000
-	);
-
-	function showTarget() {
-		$("#voice-english-output").show();
-		$("#voice-hindi-output").show();
-	}
-}
-
-function progress() {
-	let percent = document.querySelector('.percent');
-	let progress = document.querySelector('.progress');
-	let text = document.querySelector('.text');
-	let count = 12;//4
-	let per = 8;//16
-	let loading = setInterval(animateProgress, 100);
-
-	function animateProgress() {
-		if (count == 100 && per == 360) {
-			percent.classList.add("text-blink")
-			percent.innerText = "Audio File Generated!! Click Get Speech Out"
-			percent.style.fontSize = "20px";
-
-			text.style.display = "block";
-			clearInterval(loading);
-		}
-		else {
-			per = per + 4;
-			count = count + 1;
-			progress.style.width = per + 'px';
-			// percent.textContent = count + '%';
-			percent.innerText = count + '%';
-		}
-	}
+	$("#voice-english-output").show();
+	$("#voice-hindi-output").show();
 }
 
 function changeColor(){
 	let sendButton = document.querySelector("#sendbutton");
-	// let sendButton = document.getElementById("sendbutton");
 	sendButton.style.backgroundColor = "orange";
 	sendButton.style.color = "black";
 }
